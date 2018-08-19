@@ -140,7 +140,7 @@
     <Compile Include="lm016l.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="main.c">
+    <Compile Include="example.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
