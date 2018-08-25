@@ -1,5 +1,5 @@
 ![lm016l Banner](https://micro-pi.ru/wp-content/uploads/2016/10/%D0%9F%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-HD44780-%D0%BA-ATmega16-LM016L-LCD-16x2-3.png)
-# Simple library for lcd "LM016L"
+# Simple AVR library for lcd "LM016L"
 This library encapsulates most necessary functions(according to datasheet) for working with this display.
 
 ## Display Commands:
