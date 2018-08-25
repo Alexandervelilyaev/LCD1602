@@ -2,7 +2,8 @@
  * access_to_bits.h
  *
  * Created: 17.08.2018
- *  Author: Alexander Velilyaev
+ * Author: Alexander Velilyaev
+ * Contact: Alexandervelilyaev@gmail.com
  *
  * This file allows to work with any bit separately
  */ 

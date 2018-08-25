@@ -1,4 +1,7 @@
 ﻿#include "lm016l.h"
+#include "access_to_bits.h"
+#include <avr/io.h>
+#include <util/delay.h>
 
 #define DELAY0 38
 #define DELAY1 1520

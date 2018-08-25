@@ -2,15 +2,14 @@
  * lm016l.h
  *
  * Created: 17.08.2018
- *  Author: Alexander Velilyaev
+ * Author: Alexander Velilyaev
+ * Contact: Alexandervelilyaev@gmail.com
  *
  * This library encapsulates most necessary 
  * functions(according to datasheet) for working with display
  */ 
 
-#include <avr/io.h>
-#include <util/delay.h>
-#include "access_to_bits.h"
+#define F_CPU 8000000UL //8Mhz - frequency of CPU
 
 #ifndef LM016L_H_
 #define LM016L_H_
