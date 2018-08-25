@@ -131,9 +131,6 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="access_to_bits.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="lm016l.c">
       <SubType>compile</SubType>
     </Compile>

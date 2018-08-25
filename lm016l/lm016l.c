@@ -1,10 +1,11 @@
 ﻿#include "lm016l.h"
-#include "access_to_bits.h"
 #include <avr/io.h>
 #include <util/delay.h>
 
 #define DELAY0 38
 #define DELAY1 1520
+#define SET_BIT(PORT, POS, VALUE) PORT = (PORT & ~(1 << POS)) | (VALUE << POS)
+#define GET_BIT(PORT, POS) (PORT & (1 << POS)) >> POS
 
 unsigned char DATA_BUS;
 unsigned char SETTING_BUS;
