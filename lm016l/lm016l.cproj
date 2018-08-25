@@ -13,7 +13,7 @@
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
     <AssemblyName>symbol_display_16x2</AssemblyName>
-    <Name>symbol_display_16x2</Name>
+    <Name>lm016l</Name>
     <RootNamespace>symbol_display_16x2</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
