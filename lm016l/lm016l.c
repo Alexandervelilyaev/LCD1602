@@ -106,7 +106,6 @@ void SendByte(unsigned char data, unsigned char rs)
 		SET_BIT(_SFR_IO8(SETTING_BUS), E, 0);
 		_delay_us(DELAY0);
 	}
-	
 }
 
 //Clear all display data and reset AC(address counter)
