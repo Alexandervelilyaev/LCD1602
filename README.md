@@ -71,6 +71,7 @@ void InitLCD()
 ### Code
 ```c
 #include "lcd1602_base.h"
+#include <util/delay.h>
 
 void PrintText(char * data)
 {
@@ -108,6 +109,7 @@ int main(void)
 ### Code
 ```c
 #include "lcd1602_base.h"
+#include <util/delay.h>
 
 void PrintText(char * data)
 {
