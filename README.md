@@ -16,44 +16,44 @@ void ReturnHome()
 
 * Set entry mode. I_D - (1: cursor moves right and DDRAM address increased by 1, 1: cursor moves left and DDRAM address decreased by 1), SH - shifting enable
 ```c
-void EntryModeSet(unsigned char I_D, unsigned char SH)
+void EntryModeSet(uint8_t I_D, uint8_t SH)
 ```
     
 * **ON/OFF** Display/Cursor/Blink == 1 then turn on else turn off
 ```c
-void Display_On_Off(unsigned char Display, unsigned char Cursor, unsigned char Blink)
+void Display_On_Off(uint8_t Display, uint8_t Cursor, uint8_t Blink)
 ```
 
 * **Cursor or Display Shift**. S_C - (0: moves cursor, 1: moves all the display), R_L - (0: left, 1: right)
 ```c
-void CursourOrDisplayShift(unsigned char S_C, unsigned char R_L)
+void CursourOrDisplayShift(uint8_t S_C, uint8_t R_L)
 ```
 
 * Set CGRAM address to AC:
 ```c 
-void SetCGRAMAddress(unsigned char address)
+void SetCGRAMAddress(uint8_t address)
 ```
 
 * Set DDRAM address to AC:
 ```c
-void SetDDRAMAddress(unsigned char address)
+void SetDDRAMAddress(uint8_t address)
 ```
 
 * Write binary 8-bit data to DDRAM/CGRAM:
 ```c
-void WriteDataToRAM(unsigned char data)
+void WriteDataToRAM(uint8_t data)
 ```
     
 ## Setting functions:
 
 * Set pin numbers and ports using 4-bit data bus:
 ```c
-void SetPinout4Bits(unsigned char data_port, unsigned char setting_port, unsigned char rs, unsigned char e, unsigned char d4, unsigned char d5, unsigned char d6, unsigned char d7)
+void SetPinout4Bits(uint8_t data_port, uint8_t setting_port, uint8_t rs, uint8_t e, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
 ```
 
 * Set pin numbers and ports using 8-bit data bus:
 ```c
-void SetPinout8Bits(unsigned char data_port, unsigned char setting_port, unsigned char rs, unsigned char e, unsigned char d0, unsigned char d1, unsigned char d2, unsigned char d3, unsigned char d4, unsigned char d5, unsigned char d6, unsigned char d7)
+void SetPinout8Bits(uint8_t data_port, uint8_t setting_port, uint8_t rs, uint8_t e, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
 ```
 
 * Display initializing
@@ -74,11 +74,9 @@ void InitLCD()
 
 void PrintText(char * data)
 {
-	unsigned char i = 0;
-	while(data[i] != '\0')
+	for (uint8_t i = 0; data[i] != '\0'; i++) 
 	{
 		WriteDataToRAM(data[i]);
-		i++;
 	}
 }
 
@@ -113,11 +111,9 @@ int main(void)
 
 void PrintText(char * data)
 {
-	unsigned char i = 0;
-	while(data[i] != '\0')
+	for (uint8_t i = 0; data[i] != '\0'; i++) 
 	{
 		WriteDataToRAM(data[i]);
-		i++;
 	}
 }
 
