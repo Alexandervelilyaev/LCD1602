@@ -4,11 +4,9 @@
 
 void PrintText(char * data)
 {
-	unsigned char i = 0;
-	while(data[i] != '\0')
+	for (uint8_t i = 0; data[i] != '\0'; i++) 
 	{
 		WriteDataToRAM(data[i]);
-		i++;
 	}
 }
 
@@ -24,8 +22,6 @@ int main(void)
 	//Initialize Display
 	InitLCD();
 	
-	//Display is ready for use
-
 	//Print famous phrase
 	PrintText("Hello World");
 
