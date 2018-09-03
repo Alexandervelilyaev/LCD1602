@@ -50,10 +50,8 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-lcd1602_base/lcd1602_base.componentinfo.xml
-lcd1602_base_example/lcd1602_base_example.componentinfo.xml
+*/*.componentinfo.xml
 proteus/*.pdsbak
 proteus/*.workspace
-.vs/lm016l/v14/.atsuo
-lcd1602_base/Debug/*
-lcd1602_base_example/Debug/*
+.vs/*
+*/Debug/*

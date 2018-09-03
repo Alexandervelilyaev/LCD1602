@@ -1,4 +1,4 @@
-﻿#include "lcd1602_base.h"
+﻿#include "lcd1602.h"
 
 #define DELAY0 38
 #define DELAY1 1520

@@ -1,5 +1,5 @@
 ﻿/*
-* lcd1602_base.h
+* lcd1602.h
 *
 * Created: 17.08.2018
 * Author: Alexander Velilyaev
@@ -9,8 +9,8 @@
 * functions(according to datasheet) for working with display
 */
 
-#ifndef LCD1602_BASE_H_
-#define LCD1602_BASE_H_
+#ifndef LCD1602_H_
+#define LCD1602_H_
 
 #define F_CPU 8000000UL //8Mhz - frequency of CPU
 #include <avr/io.h>
@@ -51,4 +51,4 @@ void WriteDataToRAM(uint8_t data);
 //Display Initialization
 void InitLCD();
 
-#endif /* LCD1602_BASE_H_ */
+#endif /* LCD1602_H_ */

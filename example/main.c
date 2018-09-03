@@ -1,4 +1,4 @@
-#include "lcd1602_base.h"
+#include "../lcd1602/lcd1602.h"
 #include <util/delay.h>
 
 void PrintText(char * data)
@@ -18,7 +18,7 @@ int main(void)
 	InitLCD();
 	
 	//Print famous phrase
-	PrintText("Hello World!");
+	PrintText("Hello World");
 
 	while (1)
 	{

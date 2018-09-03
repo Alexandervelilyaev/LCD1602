@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Atmel Studio Solution File, Format Version 11.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "lcd1602_base", "lcd1602_base\lcd1602_base.cproj", "{DCE6C7E3-EE26-4D79-826B-08594B9AD897}"
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "lcd1602", "lcd1602\lcd1602.cproj", "{DCE6C7E3-EE26-4D79-826B-08594B9AD897}"
 EndProject
-Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "lcd1602_base_example", "lcd1602_base_example\lcd1602_base_example.cproj", "{6DF91442-5230-4682-9848-E1AC0A58A2A6}"
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "example", "example\example.cproj", "{F37DF7B7-3F0C-4E38-A98F-548C57C6F5B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Debug|AVR.Build.0 = Debug|AVR
 		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.ActiveCfg = Release|AVR
 		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.Build.0 = Release|AVR
-		{6DF91442-5230-4682-9848-E1AC0A58A2A6}.Debug|AVR.ActiveCfg = Debug|AVR
-		{6DF91442-5230-4682-9848-E1AC0A58A2A6}.Debug|AVR.Build.0 = Debug|AVR
-		{6DF91442-5230-4682-9848-E1AC0A58A2A6}.Release|AVR.ActiveCfg = Release|AVR
-		{6DF91442-5230-4682-9848-E1AC0A58A2A6}.Release|AVR.Build.0 = Release|AVR
+		{F37DF7B7-3F0C-4E38-A98F-548C57C6F5B0}.Debug|AVR.ActiveCfg = Debug|AVR
+		{F37DF7B7-3F0C-4E38-A98F-548C57C6F5B0}.Debug|AVR.Build.0 = Debug|AVR
+		{F37DF7B7-3F0C-4E38-A98F-548C57C6F5B0}.Release|AVR.ActiveCfg = Release|AVR
+		{F37DF7B7-3F0C-4E38-A98F-548C57C6F5B0}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

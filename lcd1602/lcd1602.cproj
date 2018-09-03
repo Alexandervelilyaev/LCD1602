@@ -15,7 +15,7 @@
     <AvrGccProjectExtensions>
     </AvrGccProjectExtensions>
     <AssemblyName>lcd1602</AssemblyName>
-    <Name>lcd1602_base</Name>
+    <Name>lcd1602</Name>
     <RootNamespace>lcd1602</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
@@ -120,10 +120,10 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="lcd1602_base.c">
+    <Compile Include="lcd1602.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="lcd1602_base.h">
+    <Compile Include="lcd1602.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
