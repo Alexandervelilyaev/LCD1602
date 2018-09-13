@@ -76,12 +76,22 @@ void PrintCustomPattern(uint8_t n)
 ```
 * Shift all display data left on 1 cell
 ```c
-void ShiftLeft();
+void ShiftLeft()
 ```
 
 * Shift all display data right on 1 cell
 ```c
-void ShiftRight();
+void ShiftRight()
+```
+
+* Set position(row, column) for output
+```c
+void SetPosition(char row, char col)
+```
+
+* Print text to display
+```c
+void PrintText(char * string)
 ```
 
 ## Example 1 (4-bit data bus)
@@ -91,16 +101,9 @@ void ShiftRight();
 
 ### Code
 ```c
+#define F_CPU 8000000UL //8Mhz - frequency of CPU (Change this value if frequency of your CPU is different)
 #include "lcd1602.h"
 #include <util/delay.h>
-
-void PrintText(char * data)
-{
-	for (uint8_t i = 0; data[i] != '\0'; i++) 
-	{
-		WriteDataToRAM(data[i]);
-	}
-}
 
 int main(void)
 {
@@ -129,16 +132,9 @@ int main(void)
 
 ### Code
 ```c
+#define F_CPU 8000000UL //8Mhz - frequency of CPU (Change this value if frequency of your CPU is different)
 #include "lcd1602.h"
 #include <util/delay.h>
-
-void PrintText(char * data)
-{
-	for (uint8_t i = 0; data[i] != '\0'; i++) 
-	{
-		WriteDataToRAM(data[i]);
-	}
-}
 
 int main(void)
 {
