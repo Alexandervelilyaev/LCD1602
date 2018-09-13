@@ -93,6 +93,7 @@ void SetPosition(char row, char col)
 ```c
 void PrintText(char * string)
 ```
+**Note:** Function **PrintText** can display russian characters. To allow russian characters add ``` #define RUSSIAN ``` in **lcd1602.h**
 
 ## Example 1 (4-bit data bus)
 
