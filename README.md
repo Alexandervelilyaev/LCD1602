@@ -63,6 +63,27 @@ void InitLCD()
     
 **Note:** For 8-bit data bus (pins D0-D7) use method "**SetPinout8Bits**", for 4-bit data bus (pins D4-D7) - "**SetPinout4Bits**"
     
+## High-Level functions:
+
+* Write character pattern to CGRAM
+```c
+void CreatePattern(uint8_t * pattern, uint8_t address)
+```
+
+* Print custom pattern to display
+```c
+void PrintCustomPattern(uint8_t n)
+```
+* Shift all display data left on 1 cell
+```c
+void ShiftLeft();
+```
+
+* Shift all display data right on 1 cell
+```c
+void ShiftRight();
+```
+
 ## Example 1 (4-bit data bus)
 
 ### Circuit
@@ -96,7 +117,7 @@ int main(void)
 	{
 		//ticker effect(interval 1 second)
 		_delay_ms(1000);
-		CursourOrDisplayShift(1, 1);
+		ShiftLeft(1, 1);
 	}
 }
 ```
@@ -134,7 +155,7 @@ int main(void)
 	{
 		//ticker effect(interval 1 second)
 		_delay_ms(1000);
-		CursourOrDisplayShift(1, 1);
+		ShiftLeft(1, 1);
 	}
 }
 ```
