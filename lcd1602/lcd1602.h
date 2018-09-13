@@ -13,6 +13,8 @@
 #define LCD1602_H_
 
 #define F_CPU 8000000UL //8Mhz - frequency of CPU (Change this value if frequency of your CPU is different)
+#define RUSSIAN //Enable russian symbols (remove or comment this identifier if you don't need russian symbols)
+
 #include <avr/io.h>
 #include <util/delay.h>
 
@@ -70,5 +72,20 @@ void ShiftRight();
 
 //Display Initialization
 void InitLCD();
+
+/*-----Set position(row, column) for output---------
+Parameters:
+row - number[0, 1],
+col - number[0, 39].
+*/
+void SetPosition(char row, char col);
+
+/*-----Print text to display------------------------
+Parameters:
+string - array of symbols.
+NOTE: register AC shouldn't contain CGRAM address.
+Set any DDRAM address before call this function.
+*/
+void PrintText(char * string);
 
 #endif /* LCD1602_H_ */

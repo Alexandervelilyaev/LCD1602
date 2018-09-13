@@ -1,13 +1,6 @@
+#define F_CPU 8000000UL //8Mhz - frequency of CPU (Change this value if frequency of your CPU is different)
 #include "../lcd1602/lcd1602.h"
 #include <util/delay.h>
-
-void PrintText(char * data)
-{
-	for (uint8_t i = 0; data[i] != '\0'; i++)
-	{
-		WriteDataToRAM(data[i]);
-	}
-}
 
 int main(void)
 {
@@ -19,6 +12,8 @@ int main(void)
 	
 	//Print famous phrase
 	PrintText("Hello World");
+	SetPosition(1, 0);
+	PrintText("Привет, мир");
 
 	while (1)
 	{
