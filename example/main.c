@@ -24,6 +24,6 @@ int main(void)
 	{
 		//ticker effect(interval 1 second)
 		_delay_ms(1000);
-		CursourOrDisplayShift(1, 1);
+		ShiftLeft(1, 1);
 	}
 }

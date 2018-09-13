@@ -12,7 +12,7 @@
 #ifndef LCD1602_H_
 #define LCD1602_H_
 
-#define F_CPU 8000000UL //8Mhz - frequency of CPU
+#define F_CPU 8000000UL //8Mhz - frequency of CPU (Change this value if frequency of your CPU is different)
 #include <avr/io.h>
 #include <util/delay.h>
 
@@ -47,6 +47,26 @@ void SetDDRAMAddress(uint8_t address);
 
 //Write binary 8-bit data to DDRAM/CGRAM
 void WriteDataToRAM(uint8_t data);
+
+/*-----Write character pattern to CGRAM-------------
+Parameters:
+pattern - array of bytes(In each byte 5 lower bits are significant)
+address - number[0, 7].
+*/
+void CreatePattern(uint8_t * pattern, uint8_t address);
+
+/*-----Print custom pattern to display--------------
+Parameters:
+n - number of custom pattern.
+NOTE: Set any DDRAM address before call this function.
+*/
+void PrintCustomPattern(uint8_t n);
+
+/*-----Shift all display data left on 1 cell------*/
+void ShiftLeft();
+
+/*-----Shift all display data right on 1 cell-----*/
+void ShiftRight();
 
 //Display Initialization
 void InitLCD();
