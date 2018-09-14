@@ -157,6 +157,41 @@ void WriteDataToRAM(uint8_t data)
 	SendByte(data, 1);
 }
 
+//Display Initialization
+void InitLCD()
+{
+	if (DL == 0)
+	{
+		_delay_ms(15);
+		SendNibble(0x30, 0);
+		_delay_us(4100);
+		SendNibble(0x30, 0);
+		_delay_us(100);
+		SendNibble(0x30, 0);
+		SendNibble(0x20, 0);
+		FunctionSet(0,1,0);
+		Display_On_Off(0,0,0);
+		ClearDisplay();
+		EntryModeSet(1,0);
+	}
+	else
+	{
+		_delay_ms(15);
+		FunctionSet(1,0,0);
+		_delay_us(4100);
+		FunctionSet(1,0,0);
+		_delay_us(100);
+		FunctionSet(1,0,0);
+		FunctionSet(1,1,0);
+		Display_On_Off(0,0,0);
+		ClearDisplay();
+		EntryModeSet(1,0);
+	}
+
+	//turning on display because by default he is turned off
+	Display_On_Off(1,0,0);
+}
+
 /*-----Write character pattern to CGRAM-------------
 Parameters:
 pattern - array of bytes(In each byte 5 lower bits are significant)
@@ -205,41 +240,6 @@ void SetPosition(char row, char col)
 	SetDDRAMAddress(AC);
 }
 
-//Display Initialization
-void InitLCD()
-{
-	if (DL == 0)
-	{
-		_delay_ms(15);
-		SendNibble(0x30, 0);
-		_delay_us(4100);
-		SendNibble(0x30, 0);
-		_delay_us(100);
-		SendNibble(0x30, 0);
-		SendNibble(0x20, 0);
-		FunctionSet(0,1,0);
-		Display_On_Off(0,0,0);
-		ClearDisplay();
-		EntryModeSet(1,0);
-	}
-	else
-	{
-		_delay_ms(15);
-		FunctionSet(1,0,0);
-		_delay_us(4100);
-		FunctionSet(1,0,0);
-		_delay_us(100);
-		FunctionSet(1,0,0);
-		FunctionSet(1,1,0);
-		Display_On_Off(0,0,0);
-		ClearDisplay();
-		EntryModeSet(1,0);
-	}
-
-	//turning on display because by default he is turned off
-	Display_On_Off(1,0,0);
-}
-
 int IndexOf(uint8_t * array, uint8_t item)
 {
 	for (int i = 0; array[i] != '\0'; i++)
@@ -258,16 +258,16 @@ string - array of symbols.
 NOTE: register AC shouldn't contain CGRAM address.
 Set any DDRAM address before call this function.
 */
-#ifdef RUSSIAN
 void PrintText(char * string)
 {
 	for (uint8_t i = 0; string[i] != '\0'; i++)
 	{
 		char c = string[i];
+#ifdef RUSSIAN
 		if ((c >= 192 && c <= 255) || c == 168 || c == 184)
 		{
 			int8_t enEquInd = IndexOf(commonCharacters, c);
-
+			
 			if (enEquInd != -1)
 			{
 				WriteDataToRAM("ABEKMHOPCTYXaeuopcmyx"[enEquInd]);
@@ -283,7 +283,7 @@ void PrintText(char * string)
 					CGRAM_Buffer[buf_cntr++] = r;
 					SetDDRAMAddress(AC);
 				}
-
+				
 				PrintCustomPattern(ind);
 			}
 		}
@@ -291,15 +291,9 @@ void PrintText(char * string)
 		{
 			WriteDataToRAM(c);
 		}
+#else
+			WriteDataToRAM(c);
+#endif // RUSSIAN
 		AC++;
 	}
 }
-#else
-void PrintText(char * string)
-{
-	for (uint8_t i = 0; string[i] != '\0'; i++)
-	{
-		WriteDataToRAM(string[i]);
-	}
-}
-#endif // RUSSIAN

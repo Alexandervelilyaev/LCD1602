@@ -50,6 +50,9 @@ void SetDDRAMAddress(uint8_t address);
 //Write binary 8-bit data to DDRAM/CGRAM
 void WriteDataToRAM(uint8_t data);
 
+//Display Initialization
+void InitLCD();
+
 /*-----Write character pattern to CGRAM-------------
 Parameters:
 pattern - array of bytes(In each byte 5 lower bits are significant)
@@ -69,9 +72,6 @@ void ShiftLeft();
 
 /*-----Shift all display data right on 1 cell-----*/
 void ShiftRight();
-
-//Display Initialization
-void InitLCD();
 
 /*-----Set position(row, column) for output---------
 Parameters:
