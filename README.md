@@ -1,6 +1,8 @@
 ![lm016l Banner](https://micro-pi.ru/wp-content/uploads/2016/10/%D0%9F%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-HD44780-%D0%BA-ATmega16-LM016L-LCD-16x2-3.png)
 # Simple AVR library for LCD1602(based on HD44780)
-This library encapsulates most necessary functions(according to datasheet) for working with this display.
+This library was developed and tested for microcontroller Atmega328p. But I'm sure that it will work for others microcontrollers of the AVR family. Library implements most necessary functions(according to [datasheet](datasheet/hd44780.pdf)) and several high-level functions for comfortable and easy work with this LCD.
+
+Also this library allow display russian characters regardless of CGROM model(A00 or A02). If you don't need russian characters or CGROM of your lcd contains Russian characters(ROM Code A02) then just comment or remove line ```#define RUSSIAN```  in header file.  
 
 ## Display Commands:
 
