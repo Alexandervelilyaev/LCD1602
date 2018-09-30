@@ -12,17 +12,22 @@
 #ifndef LCD1602_H_
 #define LCD1602_H_
 
+#define DATA_PORTx PORTB
+#define SETTING_PORTx PORTC
+#define DATA_DDRx DDRB
+#define SETTING_DDRx DDRC
+
 #define F_CPU 8000000UL //8Mhz - frequency of CPU (Change this value if frequency of your CPU is different)
 #define RUSSIAN //Enable russian symbols (remove or comment this identifier if you don't need russian symbols)
 
 #include <avr/io.h>
 #include <util/delay.h>
 
-//Set pin numbers and ports using 4-bit data bus
-void SetPinout4Bits(uint8_t data_port, uint8_t setting_port, uint8_t rs, uint8_t e, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7);
+//Set pin numbers using 4-bit data bus
+void SetPinout4Bits(uint8_t rs, uint8_t e, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7);
 
-//Set pin numbers and ports using 8-bit data bus
-void SetPinout8Bits(uint8_t data_port, uint8_t setting_port, uint8_t rs, uint8_t e, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7);
+//Set pin numbers using 8-bit data bus
+void SetPinout8Bits(uint8_t rs, uint8_t e, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7);
 
 //Clear all display data and reset AC(address counter)
 void ClearDisplay();

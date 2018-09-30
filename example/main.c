@@ -5,8 +5,8 @@
 
 int main(void)
 {
-	//Set PORTS(DATA and SETTINGS), pinout and mode of data transmission(4-bit or 8-bit)
-	SetPinout4Bits('B', 'C', 0, 1, 4, 5, 6, 7);
+	//Set pinout and mode of data transmission(4-bit or 8-bit)
+	SetPinout4Bits(0, 1, 4, 5, 6, 7);
 
 	//Initialize Display
 	InitLCD();

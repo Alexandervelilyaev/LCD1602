@@ -2,12 +2,11 @@
 
 #define DELAY0 38
 #define DELAY1 1520
-#define SET_BIT(PORT, POS, VALUE) PORT = (PORT & ~(1 << POS)) | (VALUE << POS)
-#define GET_BIT(PORT, POS) (PORT & (1 << POS)) >> POS
+#define SET_BIT(DST, POS, VALUE) DST = (DST & ~(1 << POS)) | (VALUE << POS)
+#define GET_BIT(SRC, POS) (SRC & (1 << POS)) >> POS
 
-uint8_t DATA_BUS, SETTING_BUS;
 uint8_t RS, E, D0, D1, D2, D3, D4,D5, D6, D7;
-uint8_t DL;//Data Length: (1 - 8 bit DATA_BUS, 0 - 4 bit DATA_BUS)
+uint8_t DL;//Data Length: (1 - 8 bit data bus, 0 - 4 bit data bus)
 uint8_t AC = 0;
 
 #ifdef RUSSIAN
@@ -18,56 +17,38 @@ uint8_t commonCharacters[] = {192, 194, 197, 202, 204, 205, 206, 208, 209, 210, 
 uint8_t onlyRussianCharacters[] = {193, 195, 196, 168, 198, 199, 200, 201, 203, 207, 212, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 225, 226, 227, 228, 184, 230, 231, 233, 234, 235, 236, 237, 239, 244, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255};
 #endif // RUSSIAN
 
-uint8_t GetPortAddress(uint8_t c)
+//Set pin numbers using 4-bit data bus
+void SetPinout4Bits(uint8_t rs, uint8_t e, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
 {
-	switch(c)
-	{
-		case 'B':
-		case 'b': return 0x05;
-		case 'C':
-		case 'c': return 0x08;
-		case 'D':
-		case 'd': return 0x0B;
-		default: return 0;
-	}
-}
-
-//Set pin numbers and ports using 4-bit data bus
-void SetPinout4Bits(uint8_t data_port, uint8_t setting_port, uint8_t rs, uint8_t e, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
-{
-	DATA_BUS = GetPortAddress(data_port);
-	SETTING_BUS = GetPortAddress(setting_port);
 	RS = rs;
 	E = e;
 	D4 = d4; D5 = d5; D6 = d6; D7 = d7;
 	DL = 0;
-	_SFR_IO8(SETTING_BUS - 1) |= (1 << RS) | (1 << E);
-	_SFR_IO8(DATA_BUS - 1) |= (1 << D7) | (1 << D6) | (1 << D5) | (1 << D4);
+	SETTING_DDRx |= (1 << RS) | (1 << E);
+	DATA_DDRx |= (1 << D7) | (1 << D6) | (1 << D5) | (1 << D4);
 }
 
-//Set pin numbers and ports using 8-bit data bus
-void SetPinout8Bits(uint8_t data_port, uint8_t setting_port, uint8_t rs, uint8_t e, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
+//Set pin numbers using 8-bit data bus
+void SetPinout8Bits(uint8_t rs, uint8_t e, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
 {
-	DATA_BUS = GetPortAddress(data_port);
-	SETTING_BUS = GetPortAddress(setting_port);
 	RS = rs;
 	E = e;
 	D0 = d0; D1 = d1; D2 = d2; D3 = d3; D4 = d4; D5 = d5; D6 = d6; D7 = d7;
 	DL = 1;
-	_SFR_IO8(SETTING_BUS - 1) |= (1 << RS) | (1 << E);
-	_SFR_IO8(DATA_BUS - 1) |= (1 << D7) | (1 << D6) | (1 << D5) | (1 << D4) | (1 << D3) | (1 << D2) | (1 << D1) | (1 << D0);
+	SETTING_DDRx |= (1 << RS) | (1 << E);
+	DATA_DDRx |= (1 << D7) | (1 << D6) | (1 << D5) | (1 << D4) | (1 << D3) | (1 << D2) | (1 << D1) | (1 << D0);
 }
 
 void SendNibble(uint8_t data, uint8_t rs)
 {
-	SET_BIT(_SFR_IO8(SETTING_BUS), RS, rs);
-	SET_BIT(_SFR_IO8(DATA_BUS), D7, GET_BIT(data, D7));
-	SET_BIT(_SFR_IO8(DATA_BUS), D6, GET_BIT(data, D6));
-	SET_BIT(_SFR_IO8(DATA_BUS), D5, GET_BIT(data, D5));
-	SET_BIT(_SFR_IO8(DATA_BUS), D4, GET_BIT(data, D4));
+	SET_BIT(SETTING_PORTx, RS, rs);
+	SET_BIT(DATA_PORTx, D7, GET_BIT(data, D7));
+	SET_BIT(DATA_PORTx, D6, GET_BIT(data, D6));
+	SET_BIT(DATA_PORTx, D5, GET_BIT(data, D5));
+	SET_BIT(DATA_PORTx, D4, GET_BIT(data, D4));
 
-	SET_BIT(_SFR_IO8(SETTING_BUS), E, 1);
-	SET_BIT(_SFR_IO8(SETTING_BUS), E, 0);
+	SET_BIT(SETTING_PORTx, E, 1);
+	SET_BIT(SETTING_PORTx, E, 0);
 	_delay_us(DELAY0);
 }
 
@@ -80,18 +61,18 @@ void SendByte(uint8_t data, uint8_t rs)
 	}
 	else
 	{
-		SET_BIT(_SFR_IO8(SETTING_BUS), RS, rs);
-		SET_BIT(_SFR_IO8(DATA_BUS), D7, GET_BIT(data, D7));
-		SET_BIT(_SFR_IO8(DATA_BUS), D6, GET_BIT(data, D6));
-		SET_BIT(_SFR_IO8(DATA_BUS), D5, GET_BIT(data, D5));
-		SET_BIT(_SFR_IO8(DATA_BUS), D4, GET_BIT(data, D4));
-		SET_BIT(_SFR_IO8(DATA_BUS), D3, GET_BIT(data, D3));
-		SET_BIT(_SFR_IO8(DATA_BUS), D2, GET_BIT(data, D2));
-		SET_BIT(_SFR_IO8(DATA_BUS), D1, GET_BIT(data, D1));
-		SET_BIT(_SFR_IO8(DATA_BUS), D0, GET_BIT(data, D0));
+		SET_BIT(SETTING_PORTx, RS, rs);
+		SET_BIT(DATA_PORTx, D7, GET_BIT(data, D7));
+		SET_BIT(DATA_PORTx, D6, GET_BIT(data, D6));
+		SET_BIT(DATA_PORTx, D5, GET_BIT(data, D5));
+		SET_BIT(DATA_PORTx, D4, GET_BIT(data, D4));
+		SET_BIT(DATA_PORTx, D3, GET_BIT(data, D3));
+		SET_BIT(DATA_PORTx, D2, GET_BIT(data, D2));
+		SET_BIT(DATA_PORTx, D1, GET_BIT(data, D1));
+		SET_BIT(DATA_PORTx, D0, GET_BIT(data, D0));
 
-		SET_BIT(_SFR_IO8(SETTING_BUS), E, 1);
-		SET_BIT(_SFR_IO8(SETTING_BUS), E, 0);
+		SET_BIT(SETTING_PORTx, E, 1);
+		SET_BIT(SETTING_PORTx, E, 0);
 		_delay_us(DELAY0);
 	}
 }
