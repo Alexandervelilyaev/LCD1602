@@ -48,14 +48,14 @@ void WriteDataToRAM(uint8_t data)
     
 ## Setting functions:
 
-* Set pin numbers and ports using 4-bit data bus:
+* Set pin numbers using 4-bit data bus:
 ```c
-void SetPinout4Bits(uint8_t data_port, uint8_t setting_port, uint8_t rs, uint8_t e, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
+void SetPinout4Bits(uint8_t rs, uint8_t e, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
 ```
 
-* Set pin numbers and ports using 8-bit data bus:
+* Set pin numbers using 8-bit data bus:
 ```c
-void SetPinout8Bits(uint8_t data_port, uint8_t setting_port, uint8_t rs, uint8_t e, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
+void SetPinout8Bits(uint8_t rs, uint8_t e, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
 ```
 
 * Display initializing
@@ -110,8 +110,8 @@ void PrintText(char * string)
 
 int main(void)
 {
-	//Set PORTS(DATA and SETTINGS), pinout and mode of data transmission(4-bit or 8-bit)
-	SetPinout4Bits('B', 'C', 0, 1, 4, 5, 6, 7);
+	//Set pinout and mode of data transmission(4-bit or 8-bit)
+	SetPinout4Bits(0, 1, 4, 5, 6, 7);
 
 	//Initialize Display
 	InitLCD();
@@ -141,8 +141,8 @@ int main(void)
 
 int main(void)
 {
-	//Set PORTS(DATA and SETTINGS), pinout and mode of data transmission(4-bit or 8-bit)
-	SetPinout8Bits('B', 'C', 0, 1, 0, 1, 2, 3, 4, 5, 6, 7);
+	//Set pinout and mode of data transmission(4-bit or 8-bit)
+	SetPinout8Bits(0, 1, 0, 1, 2, 3, 4, 5, 6, 7);
 
 	//Initialize Display
 	InitLCD();
